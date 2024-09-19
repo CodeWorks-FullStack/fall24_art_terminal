@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import ProjectCard from '@/components/globals/ProjectCard.vue';
 import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -31,7 +32,9 @@ async function getAllProjects() {
       </div>
     </section>
     <div class="row">
-      {{ projects }}
+      <div v-for="project in projects" :key="project.id" class="col-md-4 mb-3">
+        <ProjectCard :projectProp="project" />
+      </div>
     </div>
   </div>
 </template>

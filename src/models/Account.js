@@ -1,36 +1,38 @@
 export class Account {
-  /**
-   * @type {string}
-   */
-  id;
 
-  /**
-   * @type {string}
-   */
-  email;
-
-  /**
-   * @type {string}
-   */
-  name;
-
-  /**
-   * @type {string}
-   */
-  picture;
-
-  /**
-   * @param {Object} data
-   * @param {string} data.id
-   * @param {string} data.email
-   * @param {string} data.name
-   * @param {string} data.picture
-  */
-  constructor({ id, email, name, picture }) {
-    this.id = id;
-    this.email = email;
-    this.name = name;
-    this.picture = picture;
+  constructor(data) {
+    this.id = data.id;
+    this.email = data.email;
+    this.name = data.name;
+    this.picture = data.picture;
     // TODO add additional properties if needed
+    // TODO maybe save more stuff if it was a requirement on a checkpoint!!!
+
+    this.bio = data.bio
+    this.coverImg = data.coverImg
+    this.linkedin = data.linkedin
+    this.class = data.class
+    this.graduated = data.graduated
+    this.signedUp = new Date(data.createdAt)
   }
+}
+
+
+const data = {
+  "id": "6303ba27fb047e3d0d698660",
+  "_id": "6303ba27fb047e3d0d698660",
+  "email": "jerms@jerms.jerms",
+  "name": "Big Goose!",
+  "picture": "https://images.unsplash.com/photo-1451493683580-9ec8db457610?q=80&w=2269&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+  "bio": "I am so good at eating bread",
+  "coverImg": "https://plus.unsplash.com/premium_photo-1661897340844-3920b9894070?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "github": "https://www.youtube.com/watch?v=B-yUKS3O66A",
+  "linkedin": "https://www.youtube.com/watch?v=SIaFtAKnqBU",
+  "resume": "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3ZyOW9nM2R4eHhrM2Q0ajQ3dTEwMHY5Y3JpY3cyZXA4YXJ5cDE2OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AwNGX4XvvODO8/giphy.webp",
+  "class": "Fall 2021 (best class)",
+  "graduated": false,
+  "createdAt": "2023-06-01T15:20:58.001Z",
+  "updatedAt": "2024-07-23T16:59:07.844Z",
+  "__v": 0,
 }

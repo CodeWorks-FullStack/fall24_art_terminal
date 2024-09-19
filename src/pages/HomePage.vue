@@ -1,8 +1,11 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
+
+const projects = computed(() => AppState.projects)
 
 onMounted(() => {
   getAllProjects()
@@ -27,6 +30,9 @@ async function getAllProjects() {
         <h1>Projects</h1>
       </div>
     </section>
+    <div class="row">
+      {{ projects }}
+    </div>
   </div>
 </template>
 

@@ -27,7 +27,9 @@ function setActiveProject() {
           <i class="mdi mdi-magnify-plus"></i>
         </button>
       </div>
-      <img :src="projectProp.creator.picture" alt="" class="creator-img">
+      <router-link :to="{ name: 'ProfileDetails' }" :title="`Go to ${projectProp.creator.name}'s Profile Page!`">
+        <img :src="projectProp.creator.picture" alt="" class="creator-img">
+      </router-link>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@ import { profilesService } from '@/services/ProfilesService.js';
 import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
-import { computed, onMounted } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
@@ -12,10 +12,15 @@ const route = useRoute()
 const profile = computed(() => AppState.activeProfile)
 const projects = computed(() => AppState.projects)
 
-onMounted(() => {
+// onMounted(() => {
+//   getProfileById()
+//   getProjectsByCreatorId()
+// })
+
+watch(() => route.params.profileId, () => {
   getProfileById()
   getProjectsByCreatorId()
-})
+}, { immediate: true })
 
 
 async function getProfileById() {

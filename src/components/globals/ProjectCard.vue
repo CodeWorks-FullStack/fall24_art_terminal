@@ -1,7 +1,9 @@
 <script setup>
 import { Project } from '@/models/Project.js';
 import { projectsService } from '@/services/ProjectsService.js';
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
 
 const props = defineProps({
   projectProp: { type: Project, required: true }
@@ -28,7 +30,8 @@ function setActiveProject() {
         </button>
       </div>
       <!-- NOTE adds a route parameter to the url for our requested route. We want to store the id of the creator in the url on the profile page so that we can retrieve their relevant profile information when we land on the page -->
-      <router-link :to="{ name: 'ProfileDetails', params: { profileId: projectProp.creatorId } }"
+      <router-link v-if="route.name == 'Home'"
+        :to="{ name: 'ProfileDetails', params: { profileId: projectProp.creatorId } }"
         :title="`Go to ${projectProp.creator.name}'s Profile Page!`">
         <img :src="projectProp.creator.picture" alt="" class="creator-img">
       </router-link>

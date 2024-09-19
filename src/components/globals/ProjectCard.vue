@@ -11,15 +11,31 @@ defineProps({
 
 <template>
   <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{ projectProp.title }}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+    <img :src="projectProp.coverImg" class="card-img-top" :alt="projectProp.title">
+    <div class="card-body d-flex justify-content-between">
+      <div>
+        <h5 class="card-title">{{ projectProp.title }}</h5>
+        <button class="btn btn-primary">Details <i class="mdi mdi-magnify-plus"></i></button>
+      </div>
+      <img :src="projectProp.creator.picture" alt="" class="creator-img">
     </div>
   </div>
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-img-top {
+  height: 35dvh;
+}
+
+.creator-img {
+  height: 15dvh;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+</style>

@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { profilesService } from '@/services/ProfilesService.js';
+import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
@@ -12,6 +13,7 @@ const profile = computed(() => AppState.activeProfile)
 
 onMounted(() => {
   getProfileById()
+  getProjectsByCreatorId()
 })
 
 
@@ -20,6 +22,16 @@ async function getProfileById() {
     const profileId = route.params.profileId
     logger.log('id of profile from url', profileId);
     await profilesService.getProfileById(profileId)
+  } catch (error) {
+    Pop.meow(error)
+    logger.error(error)
+  }
+}
+
+async function getProjectsByCreatorId() {
+  try {
+    const profileId = route.params.profileId
+    await projectsService.getProjectsByCreatorId(profileId)
   } catch (error) {
     Pop.meow(error)
     logger.error(error)

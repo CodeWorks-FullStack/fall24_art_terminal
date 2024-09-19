@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import ProjectCard from '@/components/globals/ProjectCard.vue';
+import ProjectModal from '@/components/globals/ProjectModal.vue';
 import { projectsService } from '@/services/ProjectsService.js';
 import { logger } from '@/utils/Logger.js';
 import Pop from '@/utils/Pop.js';
@@ -37,6 +38,8 @@ async function getAllProjects() {
       </div>
     </div>
   </div>
+
+  <ProjectModal />
 </template>
 
 <style scoped lang="scss"></style>

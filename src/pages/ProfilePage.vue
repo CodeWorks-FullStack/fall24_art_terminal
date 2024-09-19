@@ -10,6 +10,7 @@ import { useRoute } from 'vue-router';
 const route = useRoute()
 
 const profile = computed(() => AppState.activeProfile)
+const projects = computed(() => AppState.projects)
 
 onMounted(() => {
   getProfileById()
@@ -62,6 +63,11 @@ async function getProjectsByCreatorId() {
     <div class="row">
       <div class="col-12">
         <p>{{ profile.bio }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div v-for="project in projects" :key="project.id" class="col-md-4 mb-3">
+        <ProjectCard :projectProp="project" />
       </div>
     </div>
   </div>

@@ -15,7 +15,9 @@ const editableAccountData = ref({
 })
 
 onMounted(() => {
-  // editableAccountData.value = AppState.account
+  // NOTE ... is the spread operator. It will empty out the contents of our account object into another brand new object, which essentially creates a copy (breaks reference to original object in memory)
+  // NOTE we break reference here so we don't alter the AppState directly with the v-modeled inputs
+  // NOTE by replacing the ref value with this new object, it will populate all input fields with relevant account information
   editableAccountData.value = { ...AppState.account }
 })
 

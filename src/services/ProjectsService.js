@@ -4,11 +4,13 @@ import { AppState } from "@/AppState.js"
 import { Project } from "@/models/Project.js"
 
 class ProjectsService {
-
   setActiveProject(project) {
     AppState.activeProject = project
   }
+
   async getAllProjects() {
+    // NOTE clears out potential ghost data
+    AppState.projects = []
     const response = await api.get('api/projects')
     logger.log('GOT PROJECTS 📷🖼️', response.data)
     const newProjects = response.data.map(projectPOJO => new Project(projectPOJO))
@@ -16,6 +18,8 @@ class ProjectsService {
   }
 
   async getProjectsByCreatorId(creatorId) {
+    // NOTE clears out potential ghost data
+    AppState.projects = []
     const response = await api.get(`api/projects?creatorId=${creatorId}`)
     logger.log('GOT PROJECTS FOR PROFILE', response.data)
     const newProjects = response.data.map(projectPOJO => new Project(projectPOJO))

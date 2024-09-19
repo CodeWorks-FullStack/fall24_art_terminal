@@ -15,8 +15,8 @@ const account = computed(() => AppState.account)
       <p>{{ account.email }}</p>
     </div>
     <div class="p-5">
+      <!-- NOTE this needs to be inside of the above v-if to work correctly -->
       <AccountForm />
-
     </div>
   </div>
   <div v-else>

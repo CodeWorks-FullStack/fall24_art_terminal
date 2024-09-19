@@ -1,20 +1,39 @@
 <script setup>
-import { ref } from 'vue';
+import { AppState } from '@/AppState.js';
+import { accountService } from '@/services/AccountService.js';
+import { logger } from '@/utils/Logger.js';
+import Pop from '@/utils/Pop.js';
+import { onMounted, ref } from 'vue';
 
 const editableAccountData = ref({
   name: '',
   picture: '',
   bio: '',
   coverImg: '',
-  linkedIn: '',
+  linkedin: '',
   graduated: false
 })
+
+onMounted(() => {
+  // editableAccountData.value = AppState.account
+  editableAccountData.value = { ...AppState.account }
+})
+
+async function updateAccount() {
+  try {
+    await accountService.updateAccount(editableAccountData.value)
+    Pop.success("Changes saved!")
+  } catch (error) {
+    Pop.meow(error)
+    logger.error(error)
+  }
+}
 
 </script>
 
 
 <template>
-  <form>
+  <form @submit.prevent="updateAccount()">
     <div class="mb-3">
       <label for="accountName" class="form-label">Account Name</label>
       <input v-model="editableAccountData.name" type="text" name="accountName" id="accountName" class="form-control"
@@ -32,7 +51,7 @@ const editableAccountData = ref({
     </div>
     <div class="mb-3">
       <label for="accountLinkedin" class="form-label">Account Linkedin</label>
-      <input v-model="editableAccountData.linkedIn" type="url" name="accountLinkedin" id="accountLinkedin"
+      <input v-model="editableAccountData.linkedin" type="url" name="accountLinkedin" id="accountLinkedin"
         class="form-control" maxlength="500">
     </div>
     <div class="mb-3">
